@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS São Paulo — Guia do Show</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7C3AED;
+    --pink: #EC4899;
+    --gold: #F59E0B;
+    --dark: #0D0A1A;
+    --darker: #07050F;
+    --card: #13101F;
+    --card2: #1A1530;
+    --text: #EDE9FE;
+    --muted: #8B7FC8;
+    --done: #10B981;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--darker);
+    color: var(--text);
+    font-family: 'Nanum Gothic', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 60px 20px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, #7C3AED44 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, #EC489933 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 18vw, 120px);
+    letter-spacing: 4px;
+    line-height: 0.9;
+    background: linear-gradient(135deg, #fff 20%, #C4B5FD 50%, var(--pink) 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .hero-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 6vw, 36px);
+    letter-spacing: 3px;
+    color: var(--gold);
+  }
+
+  .stars {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    opacity: 0;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(1); }
+    50% { opacity: var(--o, 0.8); transform: scale(1.5); }
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrap {
+    max-width: 600px;
+    margin: 0 auto 32px;
+    padding: 0 20px;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .progress-label span:last-child {
+    color: var(--gold);
+    font-weight: 800;
+  }
+
+  .progress-bar-bg {
+    background: #1E1A30;
+    border-radius: 100px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    border-radius: 100px;
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+    width: 0%;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    background: var(--card);
+    border: 1.5px solid #2D2450;
+    color: var(--muted);
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab.active, .tab:hover {
+    border-color: var(--purple);
+    color: #fff;
+    background: var(--purple)22;
+  }
+
+  .tab.active {
+    background: linear-gradient(135deg, var(--purple)55, var(--pink)33);
+    border-color: var(--pink);
+    color: #fff;
+  }
+
+  /* SECTIONS */
+  .section {
+    display: none;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px 32px;
+  }
+
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #C4B5FD;
+    margin-bottom: 4px;
+  }
+
+  .section-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  /* CHECKLIST ITEMS */
+  .check-group {
+    margin-bottom: 24px;
+  }
+
+  .group-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--pink);
+    font-weight: 800;
+    margin-bottom: 10px;
+    padding-left: 4px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--card);
+    border: 1.5px solid #221D38;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.25s;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .check-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--purple), var(--pink));
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .check-item:hover {
+    border-color: #3D3460;
+    transform: translateY(-1px);
+  }
+
+  .check-item.checked {
+    border-color: var(--done)44;
+    background: #0D2020;
+  }
+
+  .check-item.checked::before { opacity: 1; background: var(--done); }
+
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #3D3460;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s;
+    margin-top: 1px;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--done);
+    border-color: var(--done);
+  }
+
+  .check-tick {
+    display: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .check-item.checked .check-tick { display: block; }
+
+  .check-content { flex: 1; }
+
+  .check-name {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--text);
+    transition: color 0.2s;
+    line-height: 1.3;
+  }
+
+  .check-item.checked .check-name {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: var(--done)88;
+  }
+
+  .check-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .check-emoji {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* INFO CARDS */
+  .info-card {
+    background: var(--card);
+    border: 1.5px solid #221D38;
+    border-radius: 16px;
+    padding: 18px 18px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, var(--purple)22, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .info-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .info-card p, .info-card li {
+    font-size: 13px;
+    color: #A89FCE;
+    line-height: 1.7;
+  }
+
+  .info-card ul {
+    padding-left: 16px;
+  }
+
+  .info-highlight {
+    display: inline-block;
+    background: linear-gradient(90deg, var(--purple)44, var(--pink)33);
+    border: 1px solid var(--pink)55;
+    border-radius: 8px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #F9A8D4;
+    margin-bottom: 8px;
+  }
+
+  .warn-card {
+    background: #1A1010;
+    border: 1.5px solid #EC489944;
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+  }
+
+  .warn-card h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--pink);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .warn-card p, .warn-card li {
+    font-size: 12.5px;
+    color: #C09898;
+    line-height: 1.6;
+  }
+
+  .warn-card ul { padding-left: 14px; }
+
+  /* COUNTDOWN */
+  .countdown-wrap {
+    background: var(--card);
+    border: 1.5px solid #2D2450;
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .countdown-boxes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .count-box {
+    background: var(--darker);
+    border: 1px solid #2D2450;
+    border-radius: 12px;
+    padding: 12px 16px;
+    min-width: 70px;
+  }
+
+  .count-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff, var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .count-unit {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px 20px 60px;
+    font-size: 12px;
+    color: #3D3460;
+    letter-spacing: 1px;
+  }
+
+  footer span {
+    color: var(--pink);
+  }
+
+  /* ======= ROTEIRO ======= */
+  .roteiro-day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 12px;
+  }
+
+  .roteiro-day-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .roteiro-day-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, #3D3460, transparent);
+  }
+
+  .roteiro-timeline {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .roteiro-timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--purple)88, var(--pink)44, transparent);
+    border-radius: 2px;
+  }
+
+  .roteiro-card {
+    position: relative;
+    background: var(--card);
+    border: 1.5px solid #221D38;
+    border-radius: 16px;
+    padding: 16px 16px 16px 20px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .roteiro-card:hover { border-color: #3D3460; }
+
+  .roteiro-card::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 20px;
+    width: 10px; height: 10px;
+    background: var(--purple);
+    border: 2px solid var(--darker);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--purple);
+  }
+
+  .roteiro-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .roteiro-time-emoji {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .roteiro-emoji-display {
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .roteiro-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    cursor: pointer;
+    min-width: 60px;
+  }
+
+  .roteiro-title {
+    font-weight: 800;
+    font-size: 15px;
+    color: var(--text);
+    cursor: pointer;
+    flex: 1;
+    line-height: 1.3;
+  }
+
+  .roteiro-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .roteiro-btn {
+    background: #1E1A30;
+    border: 1px solid #2D2450;
+    color: var(--muted);
+    font-size: 13px;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .roteiro-btn:hover { background: #2D2450; color: #fff; }
+  .roteiro-btn.danger:hover { background: #3D1020; border-color: var(--pink); color: var(--pink); }
+
+  .roteiro-address {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .roteiro-map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #818CF8;
+    text-decoration: none;
+    background: #1B1F3A;
+    border: 1px solid #2D3260;
+    border-radius: 8px;
+    padding: 4px 10px;
+    transition: all 0.2s;
+    margin-top: 4px;
+  }
+
+  .roteiro-map-link:hover {
+    background: #2D3260;
+    color: #A5B4FC;
+  }
+
+  .roteiro-note-display {
+    font-size: 12px;
+    color: #6B5E9E;
+    margin-top: 6px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* Edit modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000000bb;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: #16122A;
+    border: 1.5px solid #2D2450;
+    border-radius: 20px;
+    padding: 24px;
+    width: 100%;
+    max-width: 460px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalIn 0.25s cubic-bezier(.4,0,.2,1);
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.92) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: #C4B5FD;
+    margin-bottom: 20px;
+  }
+
+  .modal-field {
+    margin-bottom: 14px;
+  }
+
+  .modal-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .modal-input {
+    width: 100%;
+    background: #0D0A1A;
+    border: 1.5px solid #2D2450;
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .modal-input:focus { border-color: var(--purple); }
+
+  .modal-input::placeholder { color: #3D3460; }
+
+  .emoji-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .emoji-opt {
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 8px;
+    border: 1.5px solid transparent;
+    transition: all 0.15s;
+  }
+
+  .emoji-opt:hover, .emoji-opt.selected { border-color: var(--purple); background: #2D2450; }
+
+  .modal-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .btn-save {
+    flex: 1;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-save:hover { opacity: 0.85; }
+
+  .btn-cancel {
+    background: #1E1A30;
+    color: var(--muted);
+    border: 1.5px solid #2D2450;
+    border-radius: 12px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-cancel:hover { color: #fff; border-color: #3D3460; }
+
+  .add-stop-btn {
+    width: 100%;
+    background: var(--card);
+    border: 1.5px dashed #2D2450;
+    border-radius: 14px;
+    color: var(--muted);
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  .add-stop-btn:hover { border-color: var(--purple); color: #C4B5FD; background: #1A1530; }
+
+  .add-day-btn {
+    width: 100%;
+    background: transparent;
+    border: 1.5px dashed #2D2450;
+    border-radius: 14px;
+    color: #3D3460;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
+
+  .add-day-btn:hover { border-color: var(--pink); color: var(--pink); }
+
+  .roteiro-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+  }
+
+  .roteiro-empty .big { font-size: 40px; margin-bottom: 10px; }
+  .roteiro-empty p { font-size: 13px; line-height: 1.6; }
+
+  /* Confetti flash on 100% */
+  .congrats-banner {
+    display: none;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    animation: flashIn 0.4s ease;
+  }
+
+  @keyframes flashIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="congrats-banner" id="congrats">🎉 TUDO PRONTO! ARRASAAAA NO SHOW! 💜</div>
+
+<div class="hero">
+  <div class="hero-tag">✦ Guia de Show ✦</div>
+  <h1>BTS</h1>
+  <div class="hero-sub">São Paulo · Allianz Parque</div>
+  <div class="hero-date">28 de Outubro de 2025</div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="progress-wrap" style="margin-top:0">
+  <div class="countdown-wrap">
+    <div class="countdown-label">Faltam para o show</div>
+    <div class="countdown-boxes">
+      <div class="count-box"><div class="count-num" id="cd-days">--</div><div class="count-unit">dias</div></div>
+      <div class="count-box"><div class="count-num" id="cd-hours">--</div><div class="count-unit">horas</div></div>
+      <div class="count-box"><div class="count-num" id="cd-mins">--</div><div class="count-unit">min</div></div>
+      <div class="count-box"><div class="count-num" id="cd-secs">--</div><div class="count-unit">seg</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Sua preparação</span>
+    <span id="pct-label">0%</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="prog-fill"></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('checklist')">✓ Checklist</button>
+  <button class="tab" onclick="switchTab('roteiro')">🗓️ Roteiro</button>
+  <button class="tab" onclick="switchTab('dicas')">💡 Dicas</button>
+  <button class="tab" onclick="switchTab('proibido')">🚫 Proibido</button>
+  <button class="tab" onclick="switchTab('info')">📍 Infos</button>
+</div>
+
+<!-- =================== CHECKLIST =================== -->
+<div class="section active" id="tab-checklist">
+  <div class="section-title">Checklist do Show</div>
+  <div class="section-desc">Clique em cada item quando tiver separado!</div>
+
+  <div class="check-group">
+    <div class="group-label">📄 Documentos & Ingresso</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c1">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🎟️</span>
+      <div class="check-content">
+        <div class="check-name">Ingresso (impresso ou digital)</div>
+        <div class="check-note">Deixe o QR Code acessível antes de chegar na fila. App carregado!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c2">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🪪</span>
+      <div class="check-content">
+        <div class="check-name">Documento de identidade</div>
+        <div class="check-note">RG, CNH ou passaporte. Em alguns shows é obrigatório para retirar pulseira.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">💜 Essenciais K-pop</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c3">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">💡</span>
+      <div class="check-content">
+        <div class="check-name">ARMY Bomb (light stick oficial)</div>
+        <div class="check-note">Carregue as pilhas! Leve o app BTS Weverse aberto para sincronização.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c4">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🔋</span>
+      <div class="check-content">
+        <div class="check-name">Pilhas extras para o ARMY Bomb</div>
+        <div class="check-note">AA ou AAA dependendo do seu modelo. Melhor ter a mais!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c5">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🌂</span>
+      <div class="check-content">
+        <div class="check-name">Proteção para o light stick (chuva)</div>
+        <div class="check-note">Saquinho zip ou capa plástica. Protege de chuva e suor nas filas.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">👗 Looks & Conforto</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c6">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">👟</span>
+      <div class="check-content">
+        <div class="check-name">Tênis confortável (JÁ RODADO)</div>
+        <div class="check-note">Nunca estreie sapato em show! Você vai ficar horas em pé e na fila.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c7">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🧥</span>
+      <div class="check-content">
+        <div class="check-name">Casaco ou corta-vento</div>
+        <div class="check-note">Arena fica gelada com o ar condicionado. E a fila pode pegar frio à noite.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c8">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">👜</span>
+      <div class="check-content">
+        <div class="check-name">Mochila pequena ou pochete</div>
+        <div class="check-note">Muitos shows não permitem mochilas grandes. Verifique as regras do evento!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">📱 Tecnologia & Comunicação</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c9">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🔌</span>
+      <div class="check-content">
+        <div class="check-name">Carregador portátil (power bank)</div>
+        <div class="check-note">Celular cheio ao sair de casa, power bank carregado. Bateria é vida!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c10">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">📱</span>
+      <div class="check-content">
+        <div class="check-name">Celular com armazenamento livre</div>
+        <div class="check-note">Apague fotos antigas, baixe app Weverse, e deixe espaço pra vídeos!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c11">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🎧</span>
+      <div class="check-content">
+        <div class="check-name">Fone de ouvido (pré-show)</div>
+        <div class="check-note">Para a fila! Hype playlist do BTS enquanto espera.</div>
+      </div>
+    </div>
+    
+    <div class="check-item" onclick="toggle(this)" data-id="c20">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">📶</span>
+      <div class="check-content">
+        <div class="check-name">Prints das informações importantes</div>
+        <div class="check-note">Ingresso, endereço, contatos. Se cair o sinal na arena, você está segura!</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">🥤 Alimentação & Saúde</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c12">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">💧</span>
+      <div class="check-content">
+        <div class="check-name">Garrafinha de água (vazia)</div>
+        <div class="check-note">Normalmente permitida se vazia. Você pode encher dentro da arena.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c13">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🍫</span>
+      <div class="check-content">
+        <div class="check-name">Lanchinho na bolsa</div>
+        <div class="check-note">Barrinha de cereal, biscoito. A comida dentro é cara e a fila é longa!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c14">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">💊</span>
+      <div class="check-content">
+        <div class="check-name">Kit básico de remédios</div>
+        <div class="check-note">Dipirona, buscopan, band-aid. Shows longos são intensos, melhor prevenir.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c15">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🌿</span>
+      <div class="check-content">
+        <div class="check-name">Protetor solar</div>
+        <div class="check-note">Para a fila externa! Outubro pode ter sol forte em SP.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">💰 Dinheiro & Pagamentos</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c16">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">💳</span>
+      <div class="check-content">
+        <div class="check-name">Cartão + dinheiro em espécie</div>
+        <div class="check-note">Algumas barracas não aceitam cartão. Leve uma reserva em dinheiro.</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c17">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🛍️</span>
+      <div class="check-content">
+        <div class="check-name">Dinheiro separado para o merchandise</div>
+        <div class="check-note">Defina um limite antes! A loja oficial vende coisas lindas e perigosas pro bolso 😅</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="group-label">🚗 Logística</div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c18">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">🗺️</span>
+      <div class="check-content">
+        <div class="check-name">Rota planejada com antecedência</div>
+        <div class="check-note">Metrô é melhor opção (Linha 2 Verde, estação Sumaré/Perdizes). Evite carro!</div>
+      </div>
+    </div>
+
+    <div class="check-item" onclick="toggle(this)" data-id="c19">
+      <div class="check-box"><span class="check-tick">✓</span></div>
+      <span class="check-emoji">⏰</span>
+      <div class="check-content">
+        <div class="check-name">Chegar com 2-3 horas de antecedência</div>
+        <div class="check-note">Fila do merchandise abre cedo. Quanto antes, maior chance de pegar tudo!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== ROTEIRO =================== -->
+<div class="section" id="tab-roteiro">
+  <div class="section-title">Roteiro do Fim de Semana</div>
+  <div class="section-desc">Organize tudo que vai rolar em São Paulo 🗺️</div>
+  <div id="roteiro-container"></div>
+  <button class="add-day-btn" onclick="addDay()">+ Adicionar Dia</button>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <h2 id="modal-title">Nova Parada</h2>
+
+    <div class="modal-field">
+      <label class="modal-label">Emoji</label>
+      <div class="emoji-picker" id="emoji-picker">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">Horário</label>
+      <input class="modal-input" type="time" id="input-time" placeholder="ex: 14:00">
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">Nome do Lugar</label>
+      <input class="modal-input" type="text" id="input-title" placeholder="ex: Allianz Parque">
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">Endereço</label>
+      <input class="modal-input" type="text" id="input-address" placeholder="ex: Av. Francisco Matarazzo, 1705">
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">Link do Google Maps</label>
+      <input class="modal-input" type="url" id="input-map" placeholder="https://maps.google.com/...">
+    </div>
+
+    <div class="modal-field">
+      <label class="modal-label">Anotação (opcional)</label>
+      <input class="modal-input" type="text" id="input-note" placeholder="ex: reserva no nome da Ana, confirmar antes">
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-save" onclick="saveStop()">Salvar ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== DICAS =================== -->
+<div class="section" id="tab-dicas">
+  <div class="section-title">Dicas de Ouro</div>
+  <div class="section-desc">Coisas que a maioria das pessoas descobre só no show 👇</div>
+
+  <div class="info-card">
+    <div class="info-highlight">⚡ Antes do Dia</div>
+    <h3>Prepare-se com Antecedência</h3>
+    <ul>
+      <li>Baixe o app <strong>Weverse</strong> com sua conta já logada — ele sincroniza o ARMY Bomb</li>
+      <li>Salve o ingresso offline no celular OU tire print do QR Code</li>
+      <li>Siga o perfil oficial do BTS Brasil para updates de último minuto</li>
+      <li>Planeje a roupa com antecedência: conforto > estética (mas dá pra ter os dois!)</li>
+      <li>Fique de olho nos tweets de quem foi em outras datas do tour para saber o setlist</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">🎟️ Dia do Show</div>
+    <h3>Na Fila e na Arena</h3>
+    <ul>
+      <li>A <strong>loja de merchandise oficial</strong> abre horas antes — vá cedo se quiser merch</li>
+      <li>Faça amizade na fila! A comunidade ARMY é incrível e o tempo passa mais rápido</li>
+      <li>Localize os banheiros e as saídas de emergência ao chegar na sua área</li>
+      <li>Se tiver em pé, fique perto de quem está no mesmo "nível" de euforia que você 😂</li>
+      <li>Guarde a câmera às vezes e só <em>viva o momento</em> — sua memória também é vídeo</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">💜 ARMY Bomb</div>
+    <h3>Light Stick Tips</h3>
+    <ul>
+      <li>Conecte no <strong>Bluetooth do Weverse antes do show começar</strong> — dentro da arena o sinal piora</li>
+      <li>Se não sincronizar, não se preocupe: ele pisca sozinho no ritmo da música</li>
+      <li>Pilhas novas duram o show inteiro (2-3 horas), mas tenha reserva por via das dúvidas</li>
+      <li>Durante as baladas, balance devagar. Durante as bops, vai com tudo! 🔥</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">📸 Fotos & Vídeos</div>
+    <h3>Boas Memórias</h3>
+    <ul>
+      <li>Grave no máximo 30-60 segundos de cada música — depois só curta</li>
+      <li>Modo retrato + modo night do celular ajudam muito na iluminação de arena</li>
+      <li>Peça para alguém do lado tirar foto sua com o palco ao fundo (vale a pena!)</li>
+      <li>Transmissão ao vivo pelo Instagram? Cuidado com o 3G/4G lotado na arena</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">🧠 Pós-Show</div>
+    <h3>Depois da Magia</h3>
+    <ul>
+      <li>Espere a saída da maioria antes de ir embora — menos aglomeração no metrô</li>
+      <li>Combine ponto de encontro fixo com quem for junto ANTES de entrar</li>
+      <li>Salve seus vídeos em nuvem assim que chegar em casa — memórias são preciosas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- =================== PROIBIDO =================== -->
+<div class="section" id="tab-proibido">
+  <div class="section-title">O que NÃO Levar</div>
+  <div class="section-desc">Pode ser confiscado na entrada — melhor nem tentar 🚫</div>
+
+  <div class="warn-card">
+    <h3>🎒 Bolsas Grandes</h3>
+    <p>Mochilas maiores que 30x30cm geralmente são proibidas em arenas. Prefira pochete ou bolsa pequena. Consulte o regulamento do Allianz Parque para o evento específico.</p>
+  </div>
+
+  <div class="warn-card">
+    <h3>📷 Câmeras Profissionais</h3>
+    <p>Câmeras DSLR, com lentes intercambiáveis ou com flash removível são normalmente proibidas. Câmeras de uso casual tipo point-and-shoot podem ser permitidas — verifique no site do evento.</p>
+  </div>
+
+  <div class="warn-card">
+    <h3>🥫 Alimentos e Bebidas de Fora</h3>
+    <p>Comida externa geralmente é proibida. Garrafinha vazia costuma ser liberada, mas fechada não. Confirme nas regras oficiais.</p>
+  </div>
+
+  <div class="warn-card">
+    <h3>🎺 Instrumentos e Sinalizadores</h3>
+    <p>Buzinas, chifrinhos e sinalizadores são normalmente proibidos. Varas de selfie longas também podem ser barradas.</p>
+  </div>
+
+  <div class="warn-card">
+    <h3>💊 Medicamentos sem Receita</h3>
+    <p>Se precisar levar remédio controlado, leve a receita. Remédios comuns (dipirona, etc.) em quantidade de uso pessoal costumam ser ok.</p>
+  </div>
+
+  <div class="warn-card">
+    <h3>🔪 Objetos Cortantes</h3>
+    <p>Tesouras, canivetes, qualquer objeto cortante. Cinto com fivela metálica grande pode dar problema no detector.</p>
+  </div>
+
+  <div class="info-card" style="margin-top:16px">
+    <div class="info-highlight">⚠️ IMPORTANTE</div>
+    <h3>Confirme Sempre!</h3>
+    <p style="color:#A89FCE">As regras podem variar por evento. Antes do show, acesse o site oficial do Allianz Parque e a página do produtor do evento para confirmar a lista completa de itens proibidos. Melhor checar duas vezes do que perder algo na entrada!</p>
+  </div>
+</div>
+
+<!-- =================== INFO =================== -->
+<div class="section" id="tab-info">
+  <div class="section-title">Informações do Local</div>
+  <div class="section-desc">Tudo sobre o Allianz Parque 📍</div>
+
+  <div class="info-card">
+    <div class="info-highlight">📍 Endereço</div>
+    <h3>Allianz Parque</h3>
+    <p>Av. Francisco Matarazzo, 1705<br>Água Branca, São Paulo – SP<br><br>
+    Capacidade: ~43.000 pessoas</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">🚇 Como Chegar</div>
+    <h3>Transporte Público (Recomendado!)</h3>
+    <ul>
+      <li><strong>Metrô:</strong> Linha 2 Verde — Estação Sumaré ou Perdizes (15-20 min a pé)</li>
+      <li><strong>Ônibus:</strong> Várias linhas passam pela Francisco Matarazzo</li>
+      <li><strong>App:</strong> Use o Moovit para rotas em tempo real</li>
+    </ul>
+  </div>
+
+  <div class="warn-card">
+    <h3>🚗 Dica: Evite o Carro</h3>
+    <p>O trânsito ao redor da arena em dias de show é caótico. Estacionamentos ficam lotados e preços sobem muito. Se não tiver outro jeito, vá de Uber/99 e combine o ponto de encontro para volta com antecedência.</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">🕐 Horários Típicos</div>
+    <h3>Planeje Seu Dia</h3>
+    <ul>
+      <li><strong>~12h-14h:</strong> Abertura da loja de merchandise (chegar cedo = mais opções)</li>
+      <li><strong>~16h-17h:</strong> Abertura dos portões (confirme no ingresso)</li>
+      <li><strong>~19h-20h:</strong> Show começa (horário estimado)</li>
+      <li><strong>~23h:</strong> Fim do show (estimativa de 2-3h de show)</li>
+    </ul>
+    <p style="margin-top:8px;color:#6B5E9E;font-size:12px">*Horários são estimados. Confirme sempre na comunicação oficial do evento.</p>
+  </div>
+
+  <div class="info-card">
+    <div class="info-highlight">🆘 Emergências</div>
+    <h3>Segurança em Primeiro Lugar</h3>
+    <ul>
+      <li>Localize os postos médicos ao entrar na arena</li>
+      <li>Defina ponto de encontro com seu grupo ANTES de entrar</li>
+      <li>Se se sentir mal: vá a um canto, sente no chão, peça ajuda</li>
+      <li>Segurança e staff da arena são seus aliados</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  Feito com <span>💜</span> para quem vai viver o melhor dia do ano<br>
+  <span style="color:#3D3460;font-size:10px">BTS · São Paulo · 28.10</span>
+</footer>
+
+<script>
+  // ======= STARS =======
+  const starsEl = document.getElementById('stars');
+  for(let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left: ${Math.random()*100}%;
+      top: ${Math.random()*100}%;
+      --d: ${2 + Math.random()*4}s;
+      --o: ${0.3 + Math.random()*0.7};
+      animation-delay: ${Math.random()*5}s;
+      width: ${1 + Math.random()*2}px;
+      height: ${1 + Math.random()*2}px;
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // ======= TABS =======
+  function switchTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-'+id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ======= CHECKLIST =======
+  const TOTAL_ITEMS = document.querySelectorAll('.check-item').length;
+
+  function toggle(el) {
+    el.classList.toggle('checked');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const pct = Math.round((checked / TOTAL_ITEMS) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('pct-label').textContent = pct + '%';
+    document.getElementById('congrats').style.display = pct === 100 ? 'block' : 'none';
+  }
+
+  // ======= COUNTDOWN =======
+  function updateCountdown() {
+    const showDate = new Date('2025-10-28T19:00:00-03:00');
+    const now = new Date();
+    const diff = showDate - now;
+
+    if (diff <= 0) {
+      document.querySelector('.countdown-wrap').innerHTML = '<div class="countdown-label">🎉 É HOJE! VAI ARRASAR!</div>';
+      return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+    document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+  }
+
+  // ======= ROTEIRO =======
+  const EMOJIS = ['🎵','🎤','🎶','🌙','⭐','💜','🍜','🍕','🍣','☕','🧋','🛍️','🎡','🏟️','🚇','🚕','🏨','🛏️','🎠','🌸','🎊','🎉','🗺️','📸','🍦','🍔','🥂','🎯','🎭','🌆'];
+
+  let days = [
+    {
+      id: 'd1',
+      label: '27 de Outubro — Chegada em SP',
+      stops: [
+        { id: 's1', emoji: '🏨', time: '15:00', title: 'Check-in no Hotel', address: 'Seu hotel em SP', mapUrl: '', note: 'Deixar as malas e descansar!' },
+        { id: 's2', emoji: '🍣', time: '19:00', title: 'Jantar na Liberdade', address: 'Bairro da Liberdade, São Paulo', mapUrl: 'https://maps.google.com/maps?q=Liberdade+São+Paulo', note: 'Bairro japonês — clima perfeito pra hype K-pop 😄' }
+      ]
+    },
+    {
+      id: 'd2',
+      label: '28 de Outubro — DIA DO SHOW 💜',
+      stops: [
+        { id: 's3', emoji: '☕', time: '09:00', title: 'Café da manhã tranquilo', address: '', mapUrl: '', note: 'Comer bem antes do show — vai precisar de energia!' },
+        { id: 's4', emoji: '🛍️', time: '13:00', title: 'Fila do Merchandise', address: 'Av. Francisco Matarazzo, 1705 — Allianz Parque', mapUrl: 'https://maps.google.com/maps?q=Allianz+Parque+São+Paulo', note: 'Chegar cedo garante mais opções na loja!' },
+        { id: 's5', emoji: '🏟️', time: '17:00', title: 'Entrada na Arena', address: 'Allianz Parque — Portão do setor', mapUrl: 'https://maps.google.com/maps?q=Allianz+Parque+São+Paulo', note: 'ARMY Bomb conectado, ingresso na mão, vamos nessa! 🎶' }
+      ]
+    }
+  ];
+
+  let editingDayId = null;
+  let editingStopId = null;
+  let selectedEmoji = '🎵';
+
+  function genId() { return Math.random().toString(36).slice(2,8); }
+
+  function renderRoteiro() {
+    const container = document.getElementById('roteiro-container');
+    if (days.length === 0) {
+      container.innerHTML = `<div class="roteiro-empty"><div class="big">🗓️</div><p>Nenhum dia ainda.<br>Clique em "+ Adicionar Dia" para começar!</p></div>`;
+      return;
+    }
+
+    container.innerHTML = days.map(day => `
+      <div class="roteiro-day-header">
+        <span class="roteiro-day-badge">${day.label}</span>
+        <div class="roteiro-day-line"></div>
+        <button class="roteiro-btn danger" title="Remover dia" onclick="removeDay('${day.id}')">✕</button>
+      </div>
+      <div class="roteiro-timeline">
+        ${day.stops.map(stop => renderStop(day.id, stop)).join('')}
+        <button class="add-stop-btn" onclick="openModal('${day.id}', null)">+ Adicionar parada</button>
+      </div>
+    `).join('');
+  }
+
+  function renderStop(dayId, stop) {
+    const timeDisplay = stop.time || '--:--';
+    const mapBtn = stop.mapUrl ? `<a class="roteiro-map-link" href="${stop.mapUrl}" target="_blank">🗺️ Ver no mapa</a>` : '';
+    const noteHtml = stop.note ? `<div class="roteiro-note-display">💬 ${stop.note}</div>` : '';
+    const addrHtml = stop.address ? `<div class="roteiro-address">📍 ${stop.address}</div>` : '';
+
+    return `
+      <div class="roteiro-card">
+        <div class="roteiro-card-top">
+          <div class="roteiro-time-emoji">
+            <span class="roteiro-emoji-display">${stop.emoji}</span>
+            <span class="roteiro-time">${timeDisplay}</span>
+          </div>
+          <div style="flex:1; padding-left:8px">
+            <div class="roteiro-title">${stop.title}</div>
+          </div>
+          <div class="roteiro-actions">
+            <button class="roteiro-btn" title="Editar" onclick="openModal('${dayId}', '${stop.id}')">✏️</button>
+            <button class="roteiro-btn danger" title="Remover" onclick="removeStop('${dayId}', '${stop.id}')">✕</button>
+          </div>
+        </div>
+        ${addrHtml}
+        ${mapBtn}
+        ${noteHtml}
+      </div>
+    `;
+  }
+
+  function addDay() {
+    const label = prompt('Nome do dia (ex: 28 de Outubro — Dia do Show):');
+    if (!label) return;
+    days.push({ id: genId(), label: label.trim(), stops: [] });
+    renderRoteiro();
+  }
+
+  function removeDay(dayId) {
+    if (!confirm('Remover este dia e todas as paradas?')) return;
+    days = days.filter(d => d.id !== dayId);
+    renderRoteiro();
+  }
+
+  function removeStop(dayId, stopId) {
+    const day = days.find(d => d.id === dayId);
+    if (!day) return;
+    day.stops = day.stops.filter(s => s.id !== stopId);
+    renderRoteiro();
+  }
+
+  function openModal(dayId, stopId) {
+    editingDayId = dayId;
+    editingStopId = stopId;
+
+    // Build emoji picker
+    const picker = document.getElementById('emoji-picker');
+    picker.innerHTML = EMOJIS.map(e => `<span class="emoji-opt${e === selectedEmoji ? ' selected' : ''}" onclick="selectEmoji(this,'${e}')">${e}</span>`).join('');
+
+    if (stopId) {
+      const day = days.find(d => d.id === dayId);
+      const stop = day.stops.find(s => s.id === stopId);
+      document.getElementById('modal-title').textContent = 'Editar Parada';
+      selectedEmoji = stop.emoji;
+      document.getElementById('input-time').value = stop.time;
+      document.getElementById('input-title').value = stop.title;
+      document.getElementById('input-address').value = stop.address;
+      document.getElementById('input-map').value = stop.mapUrl;
+      document.getElementById('input-note').value = stop.note;
+      // re-highlight selected emoji
+      picker.innerHTML = EMOJIS.map(e => `<span class="emoji-opt${e === selectedEmoji ? ' selected' : ''}" onclick="selectEmoji(this,'${e}')">${e}</span>`).join('');
+    } else {
+      document.getElementById('modal-title').textContent = 'Nova Parada';
+      selectedEmoji = '🎵';
+      document.getElementById('input-time').value = '';
+      document.getElementById('input-title').value = '';
+      document.getElementById('input-address').value = '';
+      document.getElementById('input-map').value = '';
+      document.getElementById('input-note').value = '';
+    }
+
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  function selectEmoji(el, emoji) {
+    selectedEmoji = emoji;
+    document.querySelectorAll('.emoji-opt').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function saveStop() {
+    const title = document.getElementById('input-title').value.trim();
+    if (!title) { alert('Coloca pelo menos o nome do lugar!'); return; }
+
+    const stopData = {
+      emoji: selectedEmoji,
+      time: document.getElementById('input-time').value,
+      title,
+      address: document.getElementById('input-address').value.trim(),
+      mapUrl: document.getElementById('input-map').value.trim(),
+      note: document.getElementById('input-note').value.trim(),
+    };
+
+    const day = days.find(d => d.id === editingDayId);
+    if (!day) return;
+
+    if (editingStopId) {
+      const idx = day.stops.findIndex(s => s.id === editingStopId);
+      day.stops[idx] = { ...day.stops[idx], ...stopData };
+    } else {
+      day.stops.push({ id: genId(), ...stopData });
+    }
+
+    closeModal();
+    renderRoteiro();
+  }
+
+  renderRoteiro();
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
